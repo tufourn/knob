@@ -1,7 +1,5 @@
 # Copyright (c) 2021 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-menu "Drivers"
-rsource "sensor/Kconfig"
-rsource "input/Kconfig"
-endmenu
+zephyr_library()
+zephyr_library_sources(mt6701.c)

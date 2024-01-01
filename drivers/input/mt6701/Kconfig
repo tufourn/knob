@@ -1,0 +1,11 @@
+# Copyright (c) 2021 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+config MT6701
+	bool "MT6701 magnetic encoder"
+	default y
+  depends on GPIO
+  depends on SPI
+  depends on INPUT
+	help
+    MT6701 magnetic encoder

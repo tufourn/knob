@@ -1,0 +1,6 @@
+description: |
+  Magnetic encoder driver for the MagnTek MT6701
+
+compatible: "magntek,mt6701"
+
+include: ["spi-device.yaml"]

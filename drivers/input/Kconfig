@@ -1,7 +1,6 @@
 # Copyright (c) 2021 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-menu "Drivers"
-rsource "sensor/Kconfig"
-rsource "input/Kconfig"
-endmenu
+if INPUT
+rsource "mt6701/Kconfig"
+endif # INPUT

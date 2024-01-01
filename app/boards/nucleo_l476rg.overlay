@@ -1,0 +1,20 @@
+/ {
+  examplesensor0: examplesensor_0 {
+    compatible = "zephyr,examplesensor";
+    input-gpios = <&gpioc 13 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+  };
+};
+
+&gpioc {
+  status = "okay";
+};
+
+&spi1 {
+  status = "okay";
+  mt6701: mt6701@0 {
+    status = "okay";
+    compatible = "magntek,mt6701";
+    reg = <0>;
+    spi-max-frequency = <1000000>;
+  };
+};
