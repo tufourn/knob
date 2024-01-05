@@ -8,6 +8,8 @@ manifest:
   remotes:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
+    - name: gc9a01a_zephyr_driver
+      url-base: https://github.com/amrithvenkat12
 
   projects:
     - name: zephyr
