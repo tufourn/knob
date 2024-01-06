@@ -1,21 +1,19 @@
 #include <zephyr/device.h>
 #include <zephyr/init.h>
 #include <zephyr/kernel.h>
+#include <zephyr/input/input.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <zephyr/drivers/sensor.h>
 
 #include <zephyr/logging/log.h>
 LOG_MODULE_REGISTER(encoder, CONFIG_SENSOR_LOG_LEVEL);
 
-#define ENCODER_POLLING_INTERVAL_MS 10 
+#define ENCODER_POLLING_INTERVAL_MS 20
 
 static uint32_t rotation_int = 0;
 static uint32_t rotation_frac = 0;
 
 const struct device *encoder = DEVICE_DT_GET(DT_NODELABEL(mt6701));
-
-int encoder_get_rotation() {
-  return rotation_int;
-}
 
 void encoder_work_handler(struct k_work *work) {
   int ret;
@@ -34,7 +32,9 @@ void encoder_work_handler(struct k_work *work) {
   rotation_int = val.val1;
   rotation_frac = val.val2;
 
-  LOG_INF("Rotation value: %d.%06d", rotation_int, rotation_frac);
+  // LOG_INF("Rotation value: %d.%06d", rotation_int, rotation_frac);
+
+  input_report_abs(encoder, INPUT_ABS_Z, rotation_int, true, K_FOREVER);
 }
 
 K_WORK_DEFINE(encoder_work, encoder_work_handler);

@@ -4,11 +4,28 @@
 
 &spi1 {
   status = "okay";
+  cs-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>, <&gpiob 5 GPIO_ACTIVE_LOW>;
   mt6701: mt6701@0 {
     status = "okay";
     compatible = "magntek,mt6701";
     reg = <0>;
     spi-max-frequency = <10000000>;
+  };
+  ssd1306: ssd1306@1 {
+    compatible = "solomon,ssd1306fb";
+    reg = <0x1>;
+    spi-max-frequency = <10000000>;
+    width = <128>;
+    height = <64>;
+    segment-offset = <0>;
+    page-offset = <0>;
+    display-offset = <0>;
+    multiplex-ratio = <63>;
+    segment-remap;
+    com-invdir;
+    data_cmd-gpios = <&gpiob 4 0>;
+    reset-gpios = <&gpiob 10 GPIO_ACTIVE_LOW>;
+    prechargep = <0x22>;
   };
 };
 
